@@ -1,0 +1,279 @@
+<!DOCTYPE html>
+<html>
+  <head>
+  <script src="http://cdn.static.runoob.com/libs/jquery/1.10.2/jquery.min.js"></script>
+  <link rel="stylesheet" href="http://cdn.static.runoob.com/libs/bootstrap/3.3.7/css/bootstrap.min.css">  
+  <script src="http://cdn.static.runoob.com/libs/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+  <script src="https://cdn.bootcss.com/react/15.4.2/react.min.js"></script>
+  <script src="https://cdn.bootcss.com/react/15.4.2/react-dom.min.js"></script>
+  <script src="https://cdn.bootcss.com/babel-standalone/6.22.1/babel.min.js"></script>
+    <link rel='stylesheet' href='/stylesheets/style.css'/>
+  </head>
+  <script type="text/javascript">
+   function ShowChange(id){
+        $.get("/getdata", {
+            case: 2,
+            id:id
+        }, function(data, status) {
+          console.log(data)
+            $("#id").val(data[0].id);
+            $("#ip").val(data[0].ip);
+            $("#domain").val(data[0].domain);
+            $("#sshpd").val(data[0].sshpd);
+            $("#mysqlpd").val(data[0].mysqlpd);
+            $("#svn").val(data[0].svn);
+            $("#pro").val(data[0].pro);
+            $("#re").val(data[0].remarks);
+            $('#ch').modal('show');
+        }).error(function() {
+            $('#chau').modal('hide');
+            $('#opMsg').text('请求时间超时');
+            $('#fos').modal('show');
+        })
+   }
+
+   function showdel(id){
+      $('#delser').text(id);
+      $('#delserver').modal('show');
+   }
+
+  function  dels(){
+         $.post("/cmd", {
+            cmd: 1,
+            id: $("#delser").text()
+        }, function(data, status) {
+             if (data.status == "yes") {
+            $('#delserver').modal('hide');
+            $('#info').text('修改区服信息成功');
+            $('#remind').modal('show');
+            
+            } else if(data.status =="no"){
+            $('#delserver').modal('hide');
+            $('#info').text('删除失败');
+            $('#remind').modal('show');
+            } 
+        }).error(function() {
+            $('#delserver').modal('hide');
+            $('#info').text('请求时间超时');
+            $('#remind').modal('show');
+        })
+
+  }
+
+  function shownew(){
+     $('#add').modal('show');
+  }
+  
+  function addnew(){
+         $.post("/cmd", {
+          cmd: 2,
+           newip: $('#aip').val(),
+           newdomain: $('#adomain').val(),
+           newpro: $('#apro').val(),
+           newsshpd: $('#asshpd').val(),
+           newsqlpd: $('#amysqlpd').val(),
+           newsvn: $("#asvn").val(),
+           newre: $("#are").val()
+      }, function(data, status) {
+           if (data.status == "yes") {
+          $('#add').modal('hide');
+          $('#info').text('新增服务器信息成功');
+          $('#remind').modal('show');
+           
+          } else if(data.status =="no"){
+          $('#add').modal('hide');
+          $('#info').text('新增失败');
+          $('#remind').modal('show');
+          } 
+      }).error(function() {
+          $('#add').modal('hide');
+          $('#info').text('请求时间超时');
+          $('#remind').modal('show');
+      })
+  }
+
+  function change(){
+             $.post("/cmd", {
+           cmd: 3,
+           cid: $('#id').val(),
+           cip: $('#ip').val(),
+           cdomain: $('#domain').val(),
+           cpro: $('#pro').val(),
+           csshpd: $('#sshpd').val(),
+           csqlpd: $('#mysqlpd').val(),
+           csvn: $('#svn').val(),
+           cre: $("#re").val()
+      }, function(data, status) {
+         console.log(data);
+         console.log(status);
+           if (data.status == "yes") {
+          $('#ch').modal('hide');
+          $('#info').text('修改服务器信息成功');
+          $('#remind').modal('show');
+           
+          } else if(data.status =="no"){
+          $('#ch').modal('hide');
+          $('#info').text('修改失败');
+          $('#remind').modal('show');
+          } 
+      }).error(function() {
+          $('#ch').modal('hide');
+          $('#info').text('请求时间超时');
+          $('#remind').modal('show');
+      })
+  }
+
+  function fresh(){
+    window.location.reload();
+  }
+
+  function r(){
+    alert("功能正在加紧做'''''''")
+  }
+  </script>
+  <body>
+  <div>
+    <table class="table table-striped table-hover"> 
+           <thead>
+                <tr>
+                    <td>ID</td>
+                    <td>IP</td>
+                    <td>域名</td>
+                    <td>所属项目</td>
+                    <td>SVN</td>
+                    <td>操作</td>
+                </tr>
+           </thead>
+       <% data.map(function(data){ %>
+         <tbody>
+              <tr>
+              <td><%= data.id %></td>
+              <td><%= data.ip %></td>
+              <td><%= data.domain %></td>
+              <td><%= data.pro %></td>
+              <td><%= data.svn %></td>
+              <td>
+              <input type="button" class="btn btn-default" value="修改" onclick="ShowChange(<%= data.id %>)">
+              <input type="button" class="btn btn-danger" value="删除" onclick="showdel(<%= data.id %>)">
+              </td>
+        <% }) %>
+              </tr>
+          </tbody>
+    </table>
+    <div class="container" style="text-align: center">
+    <div class="container">
+    <button class="btn btn-success" onclick="shownew()"> 新增服务器</button>
+    <form action="/download" method="get">
+     <input class="btn btn-warning" type="submit" value="导出数据到本地">
+    </form>
+    </div>
+    </div>
+    <!-- 修改服务器信息-->
+            <div class="modal fade" id="ch" tabIndex="-1" role="dialog" aria-labelledby="修改服务器信息" aria-hidden="true">
+            <div class="modal-dialog modal-lg">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal">
+                            <span aria-hidden="true">&times;</span>
+                            <span class="sr-only">Close</span>
+                        </button>
+                        <h4 class="modal-title">服务器信息修改</h4>
+                    </div>
+                    <div class="modal-body">
+                        <form class="form-group">
+                             ID<input class="form-control" type="text" id="id" disabled="true" />
+                            服务器IP<input class="form-control" type="text" id="ip"/>
+                            域名<input class="form-control" type="text" id="domain"/>
+                            所属项目<input class="form-control" type="text" id="pro" />
+                            服务器密码<input class="form-control" type="text" id="sshpd" />
+                            数据库密码<input class="form-control" type="text" id="mysqlpd" />
+                            项目SVN<input class="form-control" type="text" id="svn" />
+                            备注<textarea class="form-control" name="" id="re"  rows="4"></textarea>
+                        </form>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+                        <button type="button" class="btn btn-primary" onclick="change()">保存</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+      <!-- 修改服务器信息-->
+          <!-- 添加服务器信息-->
+            <div class="modal fade" id="add" tabIndex="-1" role="dialog" aria-labelledby="新增服务器信息" aria-hidden="true">
+            <div class="modal-dialog modal-lg">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal">
+                            <span aria-hidden="true">&times;</span>
+                            <span class="sr-only">Close</span>
+                        </button>
+                        <h4 class="modal-title">新增服务器信息</h4>
+                    </div>
+                    <div class="modal-body">
+                        <form class="form-group">
+                            服务器IP<input class="form-control" type="text" id="aip"/>
+                            域名<input class="form-control" type="text" id="adomain"/>
+                            所属项目<input class="form-control" type="text" id="apro" />
+                            服务器密码<input class="form-control" type="text" id="asshpd" />
+                            数据库密码<input class="form-control" type="text" id="amysqlpd" />
+                            项目SVN<input class="form-control" type="text" id="asvn" />
+                            备注<textarea class="form-control"  id="are"  rows="4"></textarea>
+                        </form>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+                        <button type="button" class="btn btn-primary" onclick="addnew()">保存</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+      <!-- 添加服务器信息-->
+      <!-- 删除服务器信息-->
+             <div class="modal fade" id="delserver" tabIndex="-1" role="dialog" aria-labelledby="删除服务器" aria-hidden="true">
+                <div class="modal-dialog modal-md">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal">
+                                <span aria-hidden="true">&times;</span>
+                                <span class="sr-only">Close</span>
+                            </button>
+                            <h4 class="modal-title">确定删除该服务器信息吗? ID 为</h4>
+                        </div>
+                        <div class="modal-body">
+                            <div id="delser"></div>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+                            <button type="button" class="btn btn-primary" onclick="dels()">确定</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+    <!-- 删除服务器信息-->
+    <!-- 提示信息-->
+                       <div class="modal fade" id="remind" tabIndex="-1" role="dialog" aria-labelledby="信息" aria-hidden="true">
+                        <div class="modal-dialog modal-md">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <button type="button" class="close" data-dismiss="modal">
+                                        <span aria-hidden="true">&times;</span>
+                                        <span class="sr-only">Close</span>
+                                    </button>
+                                    <h4 class="modal-title">信息</h4>
+                                </div>
+                                <div class="modal-body">
+                                    <div id="info"></div>
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-default" data-dismiss="modal" onclick="fresh()">关闭</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+       <!-- 提示信息-->
+ </div>
+
+  </body>
+</html>

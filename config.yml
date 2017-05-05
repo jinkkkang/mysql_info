@@ -1,0 +1,13 @@
+#数据库配置
+#数据库IP(用户信息)
+dbip: 192.168.10.150
+#数据库端口
+dbport: 3306
+#数据库库名
+dbname: test
+# 数据库用户
+dbuser: root
+# 数据库密码
+dbpasswd: 123456
+
+loginpd: 123456

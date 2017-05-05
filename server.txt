@@ -1,0 +1,117 @@
+==+==+==+==+==+==+==+==+==+==+==+==+==+==+
+||   id      1
+||   ip      47.93.158.86
+||   domain      http://pm.zhonghuass.cn/
+||   sshpd      1wdiew&s#srf@0oij*
+||   mysqlpd      1qaz3edc
+||   remarks      rails 80 port
+||   pro      BUG后台
+||   svn      
+==+==+==+==+==+==+==+==+==+==+==+==+==+==+
+||   id      2
+||   ip      47.93.120.41
+||   domain      http://user.test.zhonghuass.cn
+||   sshpd      Vm8i0ExNPotQ3wM
+||   mysqlpd      1qaz2wsx
+||   remarks      
+||   pro      盛世工会&大明宫 会员管理测试
+||   svn      svn://47.93.120.41/dmgapi && svn://47.93.120.41/ssghyaf
+==+==+==+==+==+==+==+==+==+==+==+==+==+==+
+||   id      3
+||   ip      59.110.20.187
+||   domain      http://oa.zhonghuass.cn/
+||   sshpd      zhss123
+||   mysqlpd      zhsd888
+||   remarks      
+||   pro      OA
+||   svn      
+==+==+==+==+==+==+==+==+==+==+==+==+==+==+
+||   id      4
+||   ip      47.93.158.182
+||   domain      http://mail.zhonghuass.cn/
+||   sshpd      kI@i8V9HsFoP5
+||   mysqlpd      1qaz3edc
+||   remarks      
+||   pro      邮件服务
+||   svn      
+==+==+==+==+==+==+==+==+==+==+==+==+==+==+
+||   id      5
+||   ip      47.93.158.221
+||   domain      http://gonghui.test.zhonghuass.cn/ && test.zhonghuass.cn
+||   sshpd      Ms9SExK0yCtfQbp
+||   mysqlpd      2wsx9olm
+||   remarks      nignx.conf gzip关掉
+||   pro      公会测试&&中华盛世测试
+||   svn      svn://47.93.158.221/ssgh
+==+==+==+==+==+==+==+==+==+==+==+==+==+==+
+||   id      6
+||   ip      60.205.136.199
+||   domain      www.chinadzsw.com.cn
+||   sshpd      Sdf8mKlJ9K7k@d8eTi
+||   mysqlpd      
+||   remarks      
+||   pro      集群
+||   svn      
+==+==+==+==+==+==+==+==+==+==+==+==+==+==+
+||   id      7
+||   ip      47.93.80.245
+||   domain      http://api.zhonghuass.cn/
+||   sshpd      S5DFsNsUk90SjOplC
+||   mysqlpd      
+||   remarks      
+||   pro      大明宫APP测试
+||   svn      svn://47.93.80.245/app
+==+==+==+==+==+==+==+==+==+==+==+==+==+==+
+||   id      8
+||   ip      47.93.160.227
+||   domain      http://dmg.user.test.zhonghuass.cn
+||   sshpd      mM3sG9CsX$9r9rV0Qt
+||   mysqlpd      zhongdm
+||   remarks      
+||   pro      大明宫9999（测试）
+||   svn      svn://47.93.160.227/zhss
+==+==+==+==+==+==+==+==+==+==+==+==+==+==+
+||   id      9
+||   ip      47.93.81.11
+||   domain      city.zhonghuass.cn
+||   sshpd      zhss_jinkangkang
+||   mysqlpd      
+||   remarks      
+||   pro      城市区县
+||   svn      
+==+==+==+==+==+==+==+==+==+==+==+==+==+==+
+||   id      10
+||   ip      59.110.12.155
+||   domain      http://photo.zhonghuass.cn/
+||   sshpd      zhss_jinkangkang
+||   mysqlpd      
+||   remarks      
+||   pro      爱约拍
+||   svn      
+==+==+==+==+==+==+==+==+==+==+==+==+==+==+
+||   id      11
+||   ip      47.93.159.129
+||   domain      http://dmg.user.zhonghuass.cn/
+||   sshpd      S5DFsNsUk90SjOplC
+||   mysqlpd      
+||   remarks      读取数据库47.93.160.227，库名dmg（未开启负载均衡）
+||   pro      大明宫9999（线上）
+||   svn      
+==+==+==+==+==+==+==+==+==+==+==+==+==+==+
+||   id      12
+||   ip      47.93.123.70
+||   domain      http://dmg.user.zhonghuass.cn/
+||   sshpd      S5DFsNsUk90SjOplC
+||   mysqlpd      
+||   remarks      读取数据库47.93.160.227，库名dmg
+||   pro      大明宫9999（线上）
+||   svn      
+==+==+==+==+==+==+==+==+==+==+==+==+==+==+
+||   id      13
+||   ip      59.110.12.245
+||   domain      
+||   sshpd      Zhssjkk888
+||   mysqlpd      
+||   remarks      
+||   pro      数据采集
+||   svn      
